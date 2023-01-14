@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" class="loginform justify-content-center align-items-center">
+            {% csrf_token %}
+            
+            <div class="form-error">{{ form.non_field_errors }}</div>
+            {% for f in form %}
+            {{ f }}
+            <div class="form-error">{{ f.errors }}</div>
+            {% endfor %}
+            <button type="submit">Зарегистрироваться</button>
+            <br>
+            <a href="{% url 'exist' %}">Войти в аккаунт</a>
+            {% block content %}{% endblock %}
+        </form>
+    </div>
+
+</body>
+</html>
